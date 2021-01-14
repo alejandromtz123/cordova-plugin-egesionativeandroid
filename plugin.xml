@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    id="cordova-plugin-egesionativeandroid"
+    version="1.0.0">
+    
+    <name>Egesionativeandroid</name>
+    <description>Cordova / Egesio API plugin.</description>
+    <author>Alejandro Martinez</author>
+    <keywords>cordova,cordova-android,egesio,android</keywords>
+    
+    <license>MIT License</license>
+
+    <js-module src="www/egesionativeandroid.js" name="egesionativeandroid">
+        <clobbers target="egesionativeandroid" />
+    </js-module>
+
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="egesionativeandroid" >
+                <param name="android-package" value="com.egesio.cordova.plugin.Egesionativeandroid" />
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/Egesionativeandroid.java" target-dir="src/com/egesio/cordova/plugin" />
+        <source-file src="src/android/eventbus.jar" target-dir="libs" />
+        <dependency id="cordova-plugin-androidx" version="2.0.0"/>
+    </platform>
+</plugin>

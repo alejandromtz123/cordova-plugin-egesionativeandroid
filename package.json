@@ -1,0 +1,25 @@
+{
+	"name": "cordova-plugin-egesionativeandroid",
+	"version": "1.0.0",
+	"description": "Cordova / Egesio Android API plugin.",
+	"keywords": [
+		"cordova",
+		"ecosystem:cordova",
+		"cordova-android",
+		"phonegap",
+		"egesio",
+		"android",
+		"bluetooth"
+	],
+	
+	"license": "MIT",
+	"author": {
+		"name": "Alejadro Martinez"
+	},
+	"cordova": {
+		"id": "cordova-plugin-egesionativeandroid",
+		"platforms": [
+			"android"
+		]
+	}
+}

@@ -35,14 +35,19 @@ public class Egesionativeandroid extends CordovaPlugin {
     }
 	
 	@Override
-	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {    
 
-		if(action.equals("test")) {
-
-            Toast.makeText(context, "Inicio test", Toast.LENGTH_LONG).show();
-
+		if(action.equals("iniciaServicioackgroudAndroid")) {
+            Toast.makeText(context, "Inicio 1 " + action, Toast.LENGTH_LONG).show();
+		}else if(action.equals("detenServicioackgroudAndroid")) {
+            Toast.makeText(context, "Inicio 2 " + action, Toast.LENGTH_LONG).show();
+		}else if(action.equals("conectaPulseraAndroid")) {
+            Toast.makeText(context, "Inicio 3 " + action, Toast.LENGTH_LONG).show();
+		}else if(action.equals("desconectaPulseraAndroid")) {
+            Toast.makeText(context, "Inicio 4 " + action, Toast.LENGTH_LONG).show();
+		}else if(action.equals("isPulseraConectadaAndroid")) {
+            Toast.makeText(context, "Inicio 5 " + action, Toast.LENGTH_LONG).show();
 		}
-
 
 		return false;
 	}

@@ -12,12 +12,12 @@
     <license>MIT License</license>
 
     <js-module src="www/egesionativeandroid.js" name="egesionativeandroid">
-        <clobbers target="egesionativeandroid" />
+        <clobbers target="Egesionativeandroid" />
     </js-module>
 
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="egesionativeandroid" >
+            <feature name="Egesionativeandroid" >
                 <param name="android-package" value="com.egesio.cordova.plugin.Egesionativeandroid" />
                 <param name="onload" value="true" />
             </feature>
@@ -26,5 +26,11 @@
         <source-file src="src/android/Egesionativeandroid.java" target-dir="src/com/egesio/cordova/plugin" />
         <source-file src="src/android/eventbus.jar" target-dir="libs" />
         <dependency id="cordova-plugin-androidx" version="2.0.0"/>
+        <dependency id="cordova-plugin-androidx-adapter" version="1.1.3"/>
+        <framework src="androidx.appcompat:appcompat:1.2.0" />
+        <framework src="androidx.annotation:annotation:1.0.2" />
+        <framework src="androidx.localbroadcastmanager:localbroadcastmanager:1.0.0" />
+        <framework src="androidx.work:work-runtime:2.3.4" />
+        <framework src="com.squareup.okhttp3:okhttp:4.9.0" />
     </platform>
 </plugin>

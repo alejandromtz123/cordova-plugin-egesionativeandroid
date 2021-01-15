@@ -5,11 +5,14 @@
     version="1.0.0">
     
     <name>Egesionativeandroid</name>
-    <description>Cordova / Egesio API plugin.</description>
+    <description>Plugin egesio conexion Bluetooth BLE.</description>
     <author>Alejandro Martinez</author>
     <keywords>cordova,cordova-android,egesio,android</keywords>
-    
     <license>MIT License</license>
+
+    <engines>
+        <engine name="cordova" version=">=3.5.0" />
+    </engines>
 
     <js-module src="www/egesionativeandroid.js" name="egesionativeandroid">
         <clobbers target="Egesionativeandroid" />
@@ -23,6 +26,69 @@
             </feature>
         </config-file>
 
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+                <uses-permission android:name="android.permission.WAKE_LOCK"/>
+                <uses-permission android:name="android.permission.BLUETOOTH"/>
+                <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+                <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+                <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+                <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+                <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" tools:ignore="ProtectedPermissions" />
+                <uses-permission android:name="android.permission.INTERNET" />
+                <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+                <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+                <uses-permission android:name="android.permission.BATTERY_STATS" tools:ignore="ProtectedPermissions" />
+                <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+                <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+                <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+                <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+                <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+                <uses-permission android:name="android.permission.ACCOUNT_MANAGER" tools:ignore="ProtectedPermissions" />
+                <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+        </config-file>  
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+          <service
+              android:name="com.egesio.test.egesioservices.service.BluetoothLeService"
+              android:enabled="true"
+              android:permission="android.permission.BIND_JOB_SERVICE"
+              android:stopWithTask="false" />
+          <service
+              android:name="com.egesio.test.egesioservices.service.RealTimeService"
+              android:enabled="true"
+              android:permission="android.permission.BIND_JOB_SERVICE"
+              android:stopWithTask="false" />
+        </config-file>  
+
+        <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/application">
+            <application android:name="com.egesio.test.egesioservices.app.App" />
+            <application android:usesCleartextTraffic="true" />
+        </edit-config>
+
+        <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest">
+            <manifest xmlns:tools="http://schemas.android.com/tools" />
+        </edit-config>              
+
+        <source-file src="src/android/com/egesio/test/egesioservices/adapter/DeviceListAdapter.java" target-dir="src/com/egesio/test/egesioservices/adapter" />
+        <source-file src="src/android/com/egesio/test/egesioservices/app/App.java" target-dir="src/com/egesio/test/egesioservices/app" />
+        <source-file src="src/android/com/egesio/test/egesioservices/bean/BaseEvent.java" target-dir="src/com/egesio/test/egesioservices/bean" />
+        <source-file src="src/android/com/egesio/test/egesioservices/bean/DeviceBean.java" target-dir="src/com/egesio/test/egesioservices/bean" />
+        <source-file src="src/android/com/egesio/test/egesioservices/command/CommandManager.java" target-dir="src/com/egesio/test/egesioservices/command" />
+        <source-file src="src/android/com/egesio/test/egesioservices/constants/BleConstans.java" target-dir="src/com/egesio/test/egesioservices/constants" />
+        <source-file src="src/android/com/egesio/test/egesioservices/constants/Constans.java" target-dir="src/com/egesio/test/egesioservices/constants" />
+        <source-file src="src/android/com/egesio/test/egesioservices/model/Medida.java" target-dir="src/com/egesio/test/egesioservices/model" />
+        <source-file src="src/android/com/egesio/test/egesioservices/service/AlarmReceiver.java" target-dir="src/com/egesio/test/egesioservices/service" />
+        <source-file src="src/android/com/egesio/test/egesioservices/service/BluetoothLeService.java" target-dir="src/com/egesio/test/egesioservices/service" />
+        <source-file src="src/android/com/egesio/test/egesioservices/service/MedicionesService.java" target-dir="src/com/egesio/test/egesioservices/service" />
+        <source-file src="src/android/com/egesio/test/egesioservices/service/RealTimeService.java" target-dir="src/com/egesio/test/egesioservices/service" />
+        <source-file src="src/android/com/egesio/test/egesioservices/utils/CallHelper.java" target-dir="src/com/egesio/test/egesioservices/utils" />
+        <source-file src="src/android/com/egesio/test/egesioservices/utils/ObtenToken.java" target-dir="src/com/egesio/test/egesioservices/utils" />
+        <source-file src="src/android/com/egesio/test/egesioservices/utils/SendDataEgesio.java" target-dir="src/com/egesio/test/egesioservices/utils" />
+        <source-file src="src/android/com/egesio/test/egesioservices/utils/DataHandlerUtils.java" target-dir="src/com/egesio/test/egesioservices/utils" />
+        <source-file src="src/android/com/egesio/test/egesioservices/utils/SendDataFirebase.java" target-dir="src/com/egesio/test/egesioservices/utils" />
+        <source-file src="src/android/com/egesio/test/egesioservices/utils/Sharedpreferences.java" target-dir="src/com/egesio/test/egesioservices/utils" />
+        <source-file src="src/android/com/egesio/test/egesioservices/utils/SPUtils.java" target-dir="src/com/egesio/test/egesioservices/utils" />
+        <source-file src="src/android/com/egesio/test/egesioservices/utils/Utils.java" target-dir="src/com/egesio/test/egesioservices/utils" />
         <source-file src="src/android/Egesionativeandroid.java" target-dir="src/com/egesio/cordova/plugin" />
         <source-file src="src/android/eventbus.jar" target-dir="libs" />
         <dependency id="cordova-plugin-androidx" version="2.0.0"/>
@@ -32,5 +98,8 @@
         <framework src="androidx.localbroadcastmanager:localbroadcastmanager:1.0.0" />
         <framework src="androidx.work:work-runtime:2.3.4" />
         <framework src="com.squareup.okhttp3:okhttp:4.9.0" />
+        
+
     </platform>
+
 </plugin>
